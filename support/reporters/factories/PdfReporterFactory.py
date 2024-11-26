@@ -3,7 +3,6 @@ import os
 from glob import glob
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from typing import Optional
 import datetime
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
@@ -12,12 +11,15 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, 
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import PageBreak
 
-from reporter.pdf_reporter import PdfReporter
+from creators.pdf_reporter_creator import PdfReporterCreator
+from creators.reporter_base_creator import ReporterBaseCreator
 from reporter.base_reporter import BaseReporter
+from reporter.pdf_reporter import PdfReporter
+from factories.reporter_base_factory import ReporterBaseFactory
 
-class PdfReporterManager:
-    def create_reporter(self, report_name: str, tags: Optional[list] = None) -> BaseReporter:
-        return PdfReporter(report_name, tags)
+class PdfReporterFactory(ReporterBaseFactory):
+    def create_reporter_factory(self) -> ReporterBaseCreator:
+        return PdfReporterCreator()
 
     def generate_report(self, output_dir: str, report_name: str, report_status: str, report_message: str, reporters: list[BaseReporter]):
         report_directory_path = self.__create_report_directory(output_dir, report_name)

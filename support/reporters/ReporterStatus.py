@@ -1,4 +1,4 @@
-class _EntryStatus:
+class _ReporterStatus:
     INFO = "info"
     PASS = "pass"
     FAIL = "fail"
@@ -6,4 +6,4 @@ class _EntryStatus:
     DEBUG = "debug"
     WARNING = "warning"
 
-EntryStatus = _EntryStatus
+ReporterStatus = _ReporterStatus

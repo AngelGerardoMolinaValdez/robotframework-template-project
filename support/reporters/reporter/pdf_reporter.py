@@ -23,8 +23,8 @@ class PdfReporter(BaseReporter):
         cls.set_image_output_directory()
         return super().__new__(cls)
 
-    def __init__(self, name: str, tags: Union[list, None]) -> None:
-        super().__init__(name, tags)
+    def __init__(self, name: str) -> None:
+        super().__init__(name)
     
     def __take_screenshot(self) -> str:
         image_path = os.path.join(self.image_output_path, str(uuid.uuid4()) + ".jpg")
